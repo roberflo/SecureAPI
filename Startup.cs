@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using WebApi.Entities;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApi
 {
@@ -74,7 +75,11 @@ namespace WebApi
                     ValidateAudience = false
                 };
             });
-
+            //Swagger documentation
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Secure API", Version = "v1" });
+            });
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
 
@@ -90,6 +95,11 @@ namespace WebApi
                 .AllowAnyHeader());
 
             app.UseAuthentication();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Secure API V1");
+            });
             app.UseMvc();
         }
 
