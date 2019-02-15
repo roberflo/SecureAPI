@@ -2,7 +2,7 @@
 Seed to APIs with JWT Security
 
 
-EF core: In Memory
+EF core: Local DB
 
 Documentarion: Swagger
 
