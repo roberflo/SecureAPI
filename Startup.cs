@@ -31,8 +31,11 @@ namespace WebApi
         {
             //In memory Database for prototype purposes, change the datacontext when connect to a bd
             services.AddCors();
-            services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDb"));
-            
+         
+            services.AddDbContext<DataContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
 

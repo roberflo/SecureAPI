@@ -47,7 +47,7 @@ namespace WebApi.Controllers
 
             // return basic user info (without password) and token to store client side
             return Ok(new {
-                Id = user.Id,
+                Id = user.UserId,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -118,7 +118,7 @@ namespace WebApi.Controllers
         {
             // map dto to entity and set id
             var user = _mapper.Map<User>(userDto);
-            user.Id = id;
+            user.UserId = id;
 
             try 
             {
